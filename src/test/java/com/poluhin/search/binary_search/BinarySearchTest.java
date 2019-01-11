@@ -16,6 +16,7 @@ class BinarySearchTest {
 
     private Random random;
     private Integer[] integerArray;
+    private Integer[] sameIntegerArray;
     private Integer[] nonSortIntegerArray;
     private String[] stringArray;
     private Search<Integer> biIntegerSearch;
@@ -25,6 +26,8 @@ class BinarySearchTest {
         random = new Random();
         size = random.nextInt(1000);
         integerArray = IntStream.range(0, size).boxed().toArray(Integer[]::new);
+        final var sameInt = random.nextInt();
+        sameIntegerArray = IntStream.range(0, size).mapToObj(i -> i = sameInt).toArray(Integer[]::new);
         biIntegerSearch = new BinarySearch<>();
         // TODO Add init for another arrays
     }
@@ -45,10 +48,14 @@ class BinarySearchTest {
 
     @Test
     void first() {
+        init();
+        assertEquals(0, biIntegerSearch.first(sameIntegerArray, sameIntegerArray[random.nextInt(size)]));
     }
 
     @Test
     void last() {
+        init();
+        assertEquals(size - 1, biIntegerSearch.last(sameIntegerArray, sameIntegerArray[random.nextInt(size)]));
     }
 
     @Test

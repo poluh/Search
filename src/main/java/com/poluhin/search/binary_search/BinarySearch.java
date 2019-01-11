@@ -36,12 +36,25 @@ public class BinarySearch<E extends Comparable<E>> implements Search<E> {
 
     @Override
     public int first(E[] a, E e) {
-        return 0;
+        return firstOrLast(a, e, true);
     }
 
     @Override
     public int last(E[] a, E e) {
-        return 0;
+        return firstOrLast(a, e, false);
+    }
+
+    private int firstOrLast(E[] a, E e, boolean toFirst) {
+         var pos = search(a, e);
+        final var shift = toFirst ? -1 : 1;
+        while (pos >= 0 && pos < a.length && e.equals(a[pos])) {
+            pos += shift;
+            if (pos < 0 || pos >= a.length) {
+                pos += -shift;
+                break;
+            }
+        }
+        return pos;
     }
 
     @Override
