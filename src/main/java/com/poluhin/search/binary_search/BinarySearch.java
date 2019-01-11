@@ -2,7 +2,8 @@ package com.poluhin.search.binary_search;
 
 import com.poluhin.search.Search;
 
-import java.util.logging.Logger;
+import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class BinarySearch<E extends Comparable<E>> implements Search<E> {
@@ -59,12 +60,17 @@ public class BinarySearch<E extends Comparable<E>> implements Search<E> {
 
     @Override
     public int[] all(E[] a, E e) {
-        return new int[0];
+        var first = first(a, e);
+        var last = first;
+        while (last < a.length && a[last].equals(e)) {
+            last++;
+        }
+        return IntStream.range(first, last).toArray();
     }
 
     @Override
-    public Stream<E> allStream(E[] a, E e) {
-        return null;
+    public IntStream allStream(E[] a, E e) {
+        return Arrays.stream(all(a, e));
     }
 
     @Override

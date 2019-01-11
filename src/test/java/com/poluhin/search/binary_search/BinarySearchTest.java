@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTest {
 
-    private final static Logger logger = Logger.getLogger(BinarySearchTest.class.getName());
+    private final Logger logger = Logger.getLogger(BinarySearchTest.class.getName());
 
     private Random random;
     private Integer[] integerArray;
@@ -59,14 +59,10 @@ class BinarySearchTest {
     @Test
     void all() {
         init();
-        assertTrue(Arrays.equals(Stream.of(sameIntegerArray).mapToInt(Integer::intValue).toArray(),
-                biIntegerSearch.all(sameIntegerArray, sameIntegerArray[0])));
-    }
-
-    @Test
-    void allStream() {
-        init();
-        assertEquals(Stream.of(sameIntegerArray), biIntegerSearch.allStream(sameIntegerArray, sameIntegerArray[0]));
+        var rightAnswer = IntStream.range(0, size).toArray();
+        var answer = biIntegerSearch.all(sameIntegerArray, sameIntegerArray[0]);
+        logger.info("Should be " + Arrays.toString(rightAnswer) + "\n but actually " + Arrays.toString(answer));
+        assertTrue(Arrays.equals(rightAnswer, answer));
     }
 
     @Test
@@ -83,9 +79,5 @@ class BinarySearchTest {
 
     @Test
     void sortAndAll() {
-    }
-
-    @Test
-    void sortAndAllStream() {
     }
 }
