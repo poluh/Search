@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 public class BinarySearch<E extends Comparable<E>> implements Search<E> {
 
-    private static Logger logger = Logger.getLogger(BinarySearch.class.getName());
     private static final int NOT_FOUND = -1;
 
     @Override
@@ -16,11 +15,11 @@ public class BinarySearch<E extends Comparable<E>> implements Search<E> {
     }
 
     private int recursionSearch(E[] a, E e, int start, int end) {
-        final int simplePos = simplePositions(a, e, start, end);
+        final var simplePos = simplePositions(a, e, start, end);
         if (simplePos != NOT_FOUND) return simplePos;
 
-        final int middle = (end + start) >>> 1;
-        final int cmp = a[middle].compareTo(e);
+        final var middle = (end + start) >>> 1;
+        final var cmp = a[middle].compareTo(e);
 
         if (cmp < 0) return recursionSearch(a, e, start + 1, middle);
         if (cmp > 0) return recursionSearch(a, e, middle, end - 1);
