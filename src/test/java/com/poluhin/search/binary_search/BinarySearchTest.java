@@ -65,6 +65,8 @@ class BinarySearchTest {
 
     @Test
     void allStream() {
+        init();
+        assertEquals(Stream.of(sameIntegerArray), biIntegerSearch.allStream(sameIntegerArray, sameIntegerArray[0]));
     }
 
     @Test
