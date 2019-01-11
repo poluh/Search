@@ -4,9 +4,11 @@ import com.poluhin.search.Search;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,13 +38,9 @@ class BinarySearchTest {
     void search() {
         init();
         IntStream.range(0, size).forEach(i -> {
-            try {
-                assertEquals(i, biIntegerSearch.search(integerArray, i));
-            } catch (AssertionFailedError e) {
-                logger.warning("Test error, testing information: " +
-                        String.format("size = %d, index (and element) = %d", size, i));
-                throw e;
-            }
+            logger.info("Test search, testing info: " +
+                    String.format("size = %d, index (and element) = %d", size, i));
+            assertEquals(i, biIntegerSearch.search(integerArray, i));
         });
     }
 
@@ -60,6 +58,9 @@ class BinarySearchTest {
 
     @Test
     void all() {
+        init();
+        assertTrue(Arrays.equals(Stream.of(sameIntegerArray).mapToInt(Integer::intValue).toArray(),
+                biIntegerSearch.all(sameIntegerArray, sameIntegerArray[0])));
     }
 
     @Test
