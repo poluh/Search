@@ -2,13 +2,17 @@ package com.poluhin.search.binary_search;
 
 import com.poluhin.search.Search;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import java.util.Random;
+import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTest {
+
+    private final static Logger logger = Logger.getLogger(BinarySearchTest.class.getName());
 
     private Random random;
     private Integer[] integerArray;
@@ -28,7 +32,15 @@ class BinarySearchTest {
     @Test
     void search() {
         init();
-        IntStream.range(0, size).forEach(i -> assertEquals(i, biIntegerSearch.search(integerArray, i)));
+        IntStream.range(0, size).forEach(i -> {
+            try {
+                assertEquals(i, biIntegerSearch.search(integerArray, i));
+            } catch (AssertionFailedError e) {
+                logger.warning("Test error, testing information: " +
+                        String.format("size = %d, index (and element) = %d", size, i));
+                throw e;
+            }
+        });
     }
 
     @Test
