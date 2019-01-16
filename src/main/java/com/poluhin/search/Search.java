@@ -15,5 +15,5 @@ public interface Search<E extends Comparable<E>> {
     int sortAndFirst(E[] a, E e);
     int sortAndLast(E[] a, E e);
     int[] sortAndAll(E[] a, E e);
-    Stream<E> sortAndAllStream(E[] a, E e);
+    IntStream sortAndAllStream(E[] a, E e);
 }

@@ -4,7 +4,6 @@ import com.poluhin.search.Search;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class BinarySearch<E extends Comparable<E>> implements Search<E> {
 
@@ -73,28 +72,32 @@ public class BinarySearch<E extends Comparable<E>> implements Search<E> {
         return Arrays.stream(all(a, e));
     }
 
+    private E[] getSortCopy(E[] a) {
+        return Arrays.copyOf(a, a.length);
+    }
+
     @Override
     public int sortAndSearch(E[] a, E e) {
-        return 0;
+        return search(getSortCopy(a), e);
     }
 
     @Override
     public int sortAndFirst(E[] a, E e) {
-        return 0;
+        return first(getSortCopy(a), e);
     }
 
     @Override
     public int sortAndLast(E[] a, E e) {
-        return 0;
+        return last(getSortCopy(a), e);
     }
 
     @Override
     public int[] sortAndAll(E[] a, E e) {
-        return new int[0];
+        return all(getSortCopy(a), e);
     }
 
     @Override
-    public Stream<E> sortAndAllStream(E[] a, E e) {
-        return null;
+    public IntStream sortAndAllStream(E[] a, E e) {
+        return allStream(getSortCopy(a), e);
     }
 }
