@@ -64,20 +64,4 @@ class BinarySearchTest {
         logger.info("Should be " + Arrays.toString(rightAnswer) + "\n but actually " + Arrays.toString(answer));
         assertTrue(Arrays.equals(rightAnswer, answer));
     }
-
-    @Test
-    void sortAndSearch() {
-    }
-
-    @Test
-    void sortAndFirst() {
-    }
-
-    @Test
-    void sortAndLast() {
-    }
-
-    @Test
-    void sortAndAll() {
-    }
 }
